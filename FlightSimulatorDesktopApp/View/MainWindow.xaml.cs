@@ -1,6 +1,5 @@
 ﻿using FlightSimulatorDesktopApp.ViewModel;
 using FlightSimulatorDesktopApp.Model;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,6 @@ namespace FlightSimulatorDesktopApp
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
 
-
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -40,7 +38,6 @@ namespace FlightSimulatorDesktopApp
             cvm = new ConnectionViewModel(fsm);
             dvm = new DataViewModel(fsm);
             DataContext = fsvm;
-
         }
         private void ClickConnect(object sender, RoutedEventArgs e)
         {

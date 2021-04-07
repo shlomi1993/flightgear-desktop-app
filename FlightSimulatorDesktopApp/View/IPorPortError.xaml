@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
         mc:Ignorable="d"
-        Title="IP or Port Error" Height="100" Width="200">
+        Title="IP or Port Error" Height="120" Width="250">
     <Grid>
         <Label Content="Invalid IP or Port!" FontSize="14" VerticalAlignment="Top" Canvas.Left="10" Margin="10,10,30,0"/>
         <Button Content="OK" HorizontalAlignment="Center" Height="23" Margin="0,51,0,0" VerticalAlignment="Top" Width="68" Click="Button_Click"/>
