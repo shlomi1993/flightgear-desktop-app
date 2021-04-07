@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
         mc:Ignorable="d"
-        Title="Connection Reset" Height="150" Width="450" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        Title="Connection Reset" Height="160" Width="450" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -17,9 +17,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock FontSize="14" Grid.Row="0" Grid.Column="0" Height="20" FontWeight="Bold" Margin="13,15,13,15">Current File:</TextBlock>
-        <!-- Complete file status -->
-        <Button x:Name="openFile" FontSize="14" Grid.Row="1" Grid.Column="0" Height="20" Click="openFileClick" VerticalContentAlignment ="Center" Margin="13,15,13,15" Width="110">Choose CSV file:</Button>
-        <TextBox Name="txtPath" FontSize="14" Height="20" Canvas.Left="140" Canvas.Top="10" Text="" TextWrapping="Wrap" Grid.Column="1" Margin="10,15,13,15" Grid.Row="1"/>
-        <Button x:Name="Load" FontSize="14" Grid.Row="3" Grid.Column="1" Margin="201,7,13,7" Click="Load_Click">Load</Button>
+        <TextBox x:Name="fileStatus" FontSize="14" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" TextAlignment="left" Height="20" Text="{Binding Path = VM_FilePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,15,13,15" Background="Transparent"/>
+        <Button x:Name="openFile" FontSize="14" Grid.Row="1" Grid.Column="0" Click="openFileClick" VerticalContentAlignment="Center" Margin="20,8,20,17" Width="110">Choose CSV file</Button>
+        <TextBox Name="txtPath" FontSize="14" Canvas.Left="140" Canvas.Top="10" TextWrapping="NoWrap" Grid.Column="1" Margin="10,8,13,17" Grid.Row="1"/>
+        <Button x:Name="Load" FontSize="14" Grid.Row="2" Margin="201,4,13,15" Click="Load_Click" VerticalContentAlignment="Center" Grid.Column="1">Load</Button>
     </Grid>
 </Window>
