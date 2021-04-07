@@ -29,6 +29,7 @@ namespace FlightSimulatorDesktopApp
         private FlightSimulatorViewModel fsvm;
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
+        private GraphsSettingsViewModel gvm;
 
 
         public MainWindow()
@@ -39,6 +40,7 @@ namespace FlightSimulatorDesktopApp
             fsvm = new FlightSimulatorViewModel(fsm);
             cvm = new ConnectionViewModel(fsm);
             dvm = new DataViewModel(fsm);
+            gvm = new GraphsSettingsViewModel(fsm);
             DataContext = fsvm;
 
         }
@@ -68,6 +70,14 @@ namespace FlightSimulatorDesktopApp
         {
             cvm.disconnect();
             Application.Current.Shutdown();
+        }
+
+        //Open graphs window on button click
+        private void GraphsButton_Click(object sender, RoutedEventArgs e)
+        {
+            BrowseButton.Foreground = new SolidColorBrush(Colors.Blue);
+            GraphsSettings gs = new GraphsSettings(gvm);
+            gs.Show();
         }
     }
 }
