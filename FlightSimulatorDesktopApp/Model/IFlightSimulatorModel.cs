@@ -13,6 +13,7 @@ namespace FlightSimulatorDesktopApp.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
+        void startFrom(double speed, int row);
         bool IsConnected { get; }
 
 

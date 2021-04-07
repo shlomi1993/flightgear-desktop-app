@@ -678,6 +678,27 @@ namespace FlightSimulatorDesktopApp.Model
 
         }
 
+        public void startFrom(double speed, int srcRow)
+        {
+            new Thread(delegate () {
+                var rows = System.IO.File.ReadLines(filePath);
+                foreach (string row in rows)
+                {
+                    telnetClient.write(row);
+                    PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
+                    string[] splitted = row.Split(",");
+                    int size = splitted.Length - 1;
+                    for (int i = srcRow; i < size; i++)
+                    {
+                        properties[i].SetValue(this, Double.Parse(splitted[i]));
+                    }
+                    Thread.Sleep((int)(100 * speed)); // read the data in 10Hz - needs to be according to playback file.
+                }
+                telnetClient.disconnect();
+                return;
+            }).Start();
+        }
+
         public void loadData(string path)
         {
             filePath = path;

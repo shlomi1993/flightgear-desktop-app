@@ -6,7 +6,20 @@
              xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="580" d:DesignWidth="640" MaxHeight="580" MinWidth="640" MinHeight="580">
-    <Grid Background="Blue">
-            
+    <Grid>
+        <StackPanel>
+            <MediaElement x:Name="player" Margin="10" Source="" LoadedBehavior="Manual" Height="500"></MediaElement>
+            <Grid Height="50" Width="630" Background="AliceBlue">
+
+                <Button Content="Play" Height="40" VerticalAlignment="Top" Click="Play_Click" Margin="295,10,295,0"/>
+                <Button Content="Forward" HorizontalAlignment="Left" Height="30" Margin="340,15,0,0" VerticalAlignment="Top" Width="29" Click="Forward_Click_"/>
+                <Button Content="Reverse" HorizontalAlignment="Left" Height="30" Margin="260,15,0,0" VerticalAlignment="Top" Width="29" Click="Reverse_Click_2"/>
+                <TextBox x:Name="speedChanged" HorizontalAlignment="Left" Height="30" Margin="550,12,5,5" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" TextChanged="TextBox_TextChanged"/>
+                <Label Content="Speed" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="495,10,0,0" VerticalAlignment="Top" Width="55" FontWeight="Bold" FontSize="15"/>
+            </Grid>
+        </StackPanel>
+        <Slider Foreground="Black" Background="AliceBlue" Height="20" Width="630" Margin="0,504,0,0" VerticalAlignment="Top" TickFrequency="1" 
+                    ValueChanged="Slider_ValueChanged" TickPlacement="Both" IsSnapToTickEnabled="True"
+                    Minimum="0" Maximum="100"/>
     </Grid>
 </UserControl>
