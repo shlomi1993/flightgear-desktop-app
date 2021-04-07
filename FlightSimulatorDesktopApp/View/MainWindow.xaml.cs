@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulatorDesktopApp.View;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace FlightSimulatorDesktopApp
 {
@@ -24,19 +25,32 @@ namespace FlightSimulatorDesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        // Models privates.
         private FlightSimulatorModel fsm;
+        private DataModel dm;
+        private ConnectionModel cm;
+
+        // ViewModels privates.
         private FlightSimulatorViewModel fsvm;
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
+        
 
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            fsm = new FlightSimulatorModel(new TelnetClient());
+
+            dm = new DataModel();
+            dvm = new DataViewModel(dm);
+
+            cm = new ConnectionModel();
+            cvm = new ConnectionViewModel(cm);
+
+            fsm = new FlightSimulatorModel(cm, dm);
             fsvm = new FlightSimulatorViewModel(fsm);
-            cvm = new ConnectionViewModel(fsm);
-            dvm = new DataViewModel(fsm);
+                    
             DataContext = fsvm;
         }
         private void ClickConnect(object sender, RoutedEventArgs e)
@@ -51,17 +65,13 @@ namespace FlightSimulatorDesktopApp
             DataSettings ds = new DataSettings(dvm);
             ds.Show();
         }
-        private void ClickDisconnect(object sender, RoutedEventArgs e)
-        {
-            cvm.disconnect(); // need to check if disconnected already.           
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             fsvm.start();
         }
 
-        private void Exit(object sender, RoutedEventArgs e)
+        private void WindowClosing(object sender, CancelEventArgs e)
         {
             cvm.disconnect();
             Application.Current.Shutdown();
