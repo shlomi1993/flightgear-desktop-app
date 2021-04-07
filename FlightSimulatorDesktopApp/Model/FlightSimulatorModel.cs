@@ -22,6 +22,7 @@ namespace FlightSimulatorDesktopApp.Model
         private string ip;
         private int port;
         private string filePath;
+        private DataModel database;
         private bool isConnected;
 
         // Simulator's data privates.
@@ -657,16 +658,15 @@ namespace FlightSimulatorDesktopApp.Model
 
         public void start()
         {
+            database = new DataModel(filePath);
             new Thread(delegate () {
                 var rows = System.IO.File.ReadLines(filePath);
-                int k = 0;
                 foreach (string row in rows)
                 {
                     telnetClient.write(row);
                     PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
                     string[] splitted = row.Split(",");
                     int size = splitted.Length - 1;
-                    k++;
                     for (int i = 0; i < size; i++)
                     {
                         properties[i].SetValue(this, Double.Parse(splitted[i]));
