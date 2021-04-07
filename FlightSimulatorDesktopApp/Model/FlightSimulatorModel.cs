@@ -658,7 +658,6 @@ namespace FlightSimulatorDesktopApp.Model
 
         public void start()
         {
-            database = new DataModel(filePath);
             new Thread(delegate () {
                 var rows = System.IO.File.ReadLines(filePath);
                 foreach (string row in rows)
@@ -682,6 +681,7 @@ namespace FlightSimulatorDesktopApp.Model
         public void loadData(string path)
         {
             filePath = path;
+            database = new DataModel(filePath);
         }
 
     }
