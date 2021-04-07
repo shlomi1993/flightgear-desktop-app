@@ -26,6 +26,8 @@
         <View:ControllersView x:Name="Controllers" Canvas.Top="420" Canvas.Left="694" Height="240" Width="552"></View:ControllersView>
         <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
         <View:GraphsView x:Name="Graphs" Canvas.Top="280" Canvas.Left="694" Height="120" Width="552"></View:GraphsView>
+        <Button x:Name="GraphsButton" Content="Button" Canvas.Left="772" Canvas.Top="340" Click="GraphsButton_Click"/>
+        <ComboBox x:Name="GrapomboBox" Canvas.Left="891" Canvas.Top="334" Width="120"/>
 
 
 
