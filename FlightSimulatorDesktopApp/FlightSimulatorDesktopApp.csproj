@@ -5,12 +5,23 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>PlaneIcon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Graph" Version="3.29.0" />
     <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AnomalyDetectionUtilLib">
+      <HintPath>Utilities\AnomalyDetectionUtilLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

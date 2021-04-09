@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using FlightSimulatorDesktopApp.View;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace FlightSimulatorDesktopApp
 {
@@ -25,7 +26,6 @@ namespace FlightSimulatorDesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
-
         // Models privates.
         private FlightSimulatorModel fsm;
         private DataModel dm;
@@ -35,7 +35,6 @@ namespace FlightSimulatorDesktopApp
         private FlightSimulatorViewModel fsvm;
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
-        
 
         public MainWindow()
         {
@@ -50,15 +49,17 @@ namespace FlightSimulatorDesktopApp
 
             fsm = new FlightSimulatorModel(cm, dm);
             fsvm = new FlightSimulatorViewModel(fsm);
-                    
+            
             DataContext = fsvm;
         }
+
         private void ClickConnect(object sender, RoutedEventArgs e)
         {
             ConnectButton.Foreground = new SolidColorBrush(Colors.Blue);
             ConnectionSettings cs = new ConnectionSettings(cvm);
             cs.Show();
         }
+
         private void LoadData(object sender, RoutedEventArgs e)
         {
             BrowseButton.Foreground = new SolidColorBrush(Colors.Blue);
