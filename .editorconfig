@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# SYSLIB0006: Type or member is obsolete
+dotnet_diagnostic.SYSLIB0006.severity = none

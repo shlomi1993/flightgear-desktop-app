@@ -14,6 +14,9 @@ namespace FlightSimulatorDesktopApp.Model
         void disconnect();
         void start();
         void startFrom(double speed, int row);
+        void play();
+        void pause();
+        void stop();
         bool IsConnected { get; }
 
 
@@ -63,6 +66,9 @@ namespace FlightSimulatorDesktopApp.Model
         double Turn { get; set; }
         double VerticalSpeedIndicator { get; set; }
         double EngineRPM { get; set; }
+        int IRow { get; set; }
+        int NumOfRows { get; }
+        double Speed { get; set; }
 
 
         //// Flight Controls.

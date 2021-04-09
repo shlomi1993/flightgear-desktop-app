@@ -28,6 +28,7 @@ namespace FlightSimulatorDesktopApp
         private FlightSimulatorViewModel fsvm;
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
+        private PlayerViewModel pvm;
 
         public MainWindow()
         {
@@ -37,6 +38,7 @@ namespace FlightSimulatorDesktopApp
             fsvm = new FlightSimulatorViewModel(fsm);
             cvm = new ConnectionViewModel(fsm);
             dvm = new DataViewModel(fsm);
+            pvm = new PlayerViewModel(fsm);
             DataContext = fsvm;
         }
         private void ClickConnect(object sender, RoutedEventArgs e)
@@ -60,7 +62,11 @@ namespace FlightSimulatorDesktopApp
         {
             fsvm.start();
         }
-
+        private void Player(object sender, RoutedEventArgs e)
+        {
+            PlayerView pv = new PlayerView(pvm);
+            pv.Show();
+        }
         private void Exit(object sender, RoutedEventArgs e)
         {
             cvm.disconnect();

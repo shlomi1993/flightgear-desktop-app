@@ -11,10 +11,12 @@ namespace FlightSimulatorDesktopApp.Model
     {
         private double[,] database;
         private int numOfRows;
-        private int numOfColumns; 
+        private int numOfColumns;
+        private IEnumerable<string> rows;
         public DataModel(string filePath)
         {
             var rows = File.ReadLines(filePath);
+            this.rows = rows;
             numOfRows = rows.Count();
             numOfColumns = rows.First().Split(",").Length;
             database = new Double[numOfRows, numOfColumns];
@@ -50,6 +52,30 @@ namespace FlightSimulatorDesktopApp.Model
                 row[j] = database[i, j];
             }
             return row;
+        }
+
+        public string getStringRow(int i)
+        {
+            int k = 0;
+            foreach (string row in rows)
+            {
+                if (k == i)
+                {
+                    return row;
+                }
+                k++;
+            }
+            return null;
+
+        }
+
+        public int getNumOfRows()
+        {
+            return numOfRows;
+        }
+        public int getNumOfColumns()
+        {
+            return numOfColumns;
         }
     }
 }

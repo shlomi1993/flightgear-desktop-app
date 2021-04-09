@@ -9,8 +9,7 @@
         Title="Flight Simulator Desktop Application" Height="720" Width="1280" MinHeight="720" MaxHeight="720" MinWidth="1280" MaxWidth="1280">
     <Canvas Background="AliceBlue">
         <Grid Height="720" Width="1280" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal">
-            </StackPanel>
+            <StackPanel Orientation="Horizontal"/>
         </Grid>
         <Label Content="Flight Simulator Manager" FontSize="32" FontWeight="Bold" FontStyle="Italic" Height="70" Canvas.Left="22" Canvas.Top="10" Width="630"/>
 
@@ -18,11 +17,9 @@
         <Button x:Name ="DisconnectButton" Foreground = "Black" Click="ClickDisconnect" Height="26" Width="80" RenderTransformOrigin="0.06,0.6" Canvas.Left="1081" Canvas.Top="32">Disconnect</Button>
         <Button x:Name="BrowseButton" Foreground = "Black" Click="LoadData" Height="26" Width="80" Canvas.Left="996" Canvas.Top="32">Load Data</Button>
         <Button x:Name="ExitButton" Foreground = "Red" Click="Exit" Height="26" Width="80" Canvas.Left="1166" Canvas.Top="32" RenderTransformOrigin="0.675,3.463">Exit</Button>
-
+        <Button x:Name="PlayerButton" Foreground = "Blue" Click="Player" Height="50" Width="80" Canvas.Left="50" Canvas.Top="100" RenderTransformOrigin="50,50">Player</Button>
         <!--View:ConnectionDataView x:Name="ConnectionButtons" Canvas.Left="670" Canvas.Top="10" Height="70" Width="600"  /-->
         <Button Content="Temp Start Button" Height="54" Canvas.Left="550" Canvas.Top="13" Width="222" Click="Button_Click"/>
-
-        <View:PlayerView x:Name="Player" Canvas.Top="80" Canvas.Left="22" Height="500" Width="454"></View:PlayerView>
         <View:ControllersView x:Name="Controllers" Canvas.Top="420" Canvas.Left="694" Height="240" Width="552"></View:ControllersView>
         <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
         <View:GraphsView x:Name="Graphs" Canvas.Top="280" Canvas.Left="694" Height="120" Width="552"></View:GraphsView>

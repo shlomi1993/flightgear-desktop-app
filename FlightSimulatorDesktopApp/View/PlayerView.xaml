@@ -1,25 +1,55 @@
-﻿<UserControl x:Class="FlightSimulatorDesktopApp.View.PlayerView"
+﻿<Window x:Class="FlightSimulatorDesktopApp.View.PlayerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="580" d:DesignWidth="640" MaxHeight="580" MinWidth="640" MinHeight="580">
-    <Grid>
-        <StackPanel>
-            <MediaElement x:Name="player" Margin="10" Source="" LoadedBehavior="Manual" Height="500"></MediaElement>
-            <Grid Height="50" Width="630" Background="AliceBlue">
+             xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View" xmlns:viewmodel="clr-namespace:FlightSimulatorDesktopApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:PlayerViewModel}"
+             mc:Ignorable="d" d:DesignHeight="150" d:DesignWidth="1200" MinHeight="150" Height="150" Width="1000">
+    <StackPanel HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="1200">
+        <StackPanel.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </StackPanel.Background>
+        <Slider HorizontalAlignment="Center" Height="30" Margin="0,30,0,0" VerticalAlignment="Top" Width="1150" TickFrequency="1" IsSnapToTickEnabled="True"
+            TickPlacement="BottomRight" Minimum="0" Maximum="{Binding VM_NumOfRows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                Value="{Binding VM_IRow, Mode=TwoWay}">
+        </Slider>
+        <Grid Height="90" Width="1000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="37*"/>
+            </Grid.RowDefinitions>
+            <Button HorizontalAlignment="Center" Height="66" VerticalAlignment="Top" Width="64" Click="Pause_Click" Foreground="Black" Margin="0,12,0,0" Grid.RowSpan="2">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/pause.ico" Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="375,0,0,0" Click="Play_Click" Foreground="Black" Grid.RowSpan="2">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/play1.ico"/>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="555,0,0,0" Click="Stop_Click" Foreground="Black" Grid.RowSpan="2">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/stop.ico"/>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="65" Margin="645,4,0,0" Click="Forward_Click" Foreground="Black" Grid.Row="1">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/forward.ico"/>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="65" Margin="285,4,0,0" Click="Reverse_Click" Foreground="Black" Grid.Row="1">
+                <Button.Background>
+                    <ImageBrush ImageSource="/View/reverse.ico"/>
+                </Button.Background>
+            </Button>
+            <Label Content="Speed" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="800,7,0,0" VerticalAlignment="Top" Width="77" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.499,0.064" Grid.Row="1"/>
+            <Slider HorizontalAlignment="Left" Height="40" Margin="880,19,0,0" VerticalAlignment="Top" Width="120" TickPlacement="BottomRight" Minimum="0.5" Maximum="2" Value="{Binding VM_Speed, Mode=TwoWay}" TickFrequency="0.5" Grid.Row="1"/>
 
-                <Button Content="Play" Height="40" VerticalAlignment="Top" Click="Play_Click" Margin="295,10,295,0"/>
-                <Button Content="Forward" HorizontalAlignment="Left" Height="30" Margin="340,15,0,0" VerticalAlignment="Top" Width="29" Click="Forward_Click_"/>
-                <Button Content="Reverse" HorizontalAlignment="Left" Height="30" Margin="260,15,0,0" VerticalAlignment="Top" Width="29" Click="Reverse_Click_2"/>
-                <TextBox x:Name="speedChanged" HorizontalAlignment="Left" Height="30" Margin="550,12,5,5" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" TextChanged="TextBox_TextChanged"/>
-                <Label Content="Speed" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="495,10,0,0" VerticalAlignment="Top" Width="55" FontWeight="Bold" FontSize="15"/>
-            </Grid>
-        </StackPanel>
-        <Slider Foreground="Black" Background="AliceBlue" Height="20" Width="630" Margin="0,504,0,0" VerticalAlignment="Top" TickFrequency="1" 
-                    ValueChanged="Slider_ValueChanged" TickPlacement="Both" IsSnapToTickEnabled="True"
-                    Minimum="0" Maximum="100"/>
-    </Grid>
-</UserControl>
+        </Grid>
+
+    </StackPanel>
+</Window>

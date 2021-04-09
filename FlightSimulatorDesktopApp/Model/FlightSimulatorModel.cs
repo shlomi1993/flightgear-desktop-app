@@ -16,14 +16,14 @@ namespace FlightSimulatorDesktopApp.Model
     {
         // Norifier.
         public event PropertyChangedEventHandler PropertyChanged;
+        private static EventWaitHandle waitHandle = new ManualResetEvent(initialState: true);
 
         // Connection and Data privates.
         private ITelnetClient telnetClient;
-        private string ip;
-        private int port;
         private string filePath;
         private DataModel database;
         private bool isConnected;
+        private Thread mainThread;
 
         // Simulator's data privates.
         private double aileron;
@@ -68,6 +68,9 @@ namespace FlightSimulatorDesktopApp.Model
         private double turn;
         private double verticalSpeedIndicator;
         private double engineRPM;
+        private int iRow;
+        private int numOfRows;
+        private double speed;
 
         // Constructor.
         public FlightSimulatorModel(ITelnetClient tc)
@@ -75,49 +78,6 @@ namespace FlightSimulatorDesktopApp.Model
             telnetClient = tc;
             isConnected = false;
         }
-
-        // Connection and Data properties.
-        //public string IPAdderss
-        //{
-        //    get => ip;
-        //    set
-        //    {
-        //        if (ip != value)
-        //        {
-        //            ip = value;
-        //            NotifyPropertyChanged("IPAdderss");
-        //        }
-        //    }
-        //}
-
-        //public int Port
-        //{
-        //    get => port;
-        //    set
-        //    {
-        //        if (port != value)
-        //        {
-        //            port = value;
-        //            NotifyPropertyChanged("Port");
-        //        }
-        //    }
-        //}
-        //public string FilePath
-        //{
-        //    get => filePath;
-        //    set
-        //    {
-        //        if (filePath != value)
-        //        {
-        //            filePath = value;
-        //            NotifyPropertyChanged("FilePath");
-        //        }
-        //    }
-        //}
-
-        // Note that if remove comments, update loop will be broken!
-
-
 
         // Simulator Properties.
         public double Aileron
@@ -623,6 +583,45 @@ namespace FlightSimulatorDesktopApp.Model
             }
         }
 
+        public int IRow
+        {
+            get => iRow;
+            set
+            {
+                if (iRow != value)
+                {
+                    iRow = value;
+                    NotifyPropertyChanged("IRow");
+                }
+            }
+        }
+
+        public int NumOfRows
+        {
+            get => numOfRows;
+            set
+            {
+                if (numOfRows != value)
+                {
+                    numOfRows = value;
+                    NotifyPropertyChanged("NumOfRows");
+                }
+            }
+        }
+
+        public double Speed
+        {
+            get => speed;
+            set
+            {
+                if (speed != value)
+                {
+                    speed = 1/value;
+                    NotifyPropertyChanged("Speed");
+                }
+            }
+        }
+
         //
         public bool IsConnected
         {
@@ -655,54 +654,86 @@ namespace FlightSimulatorDesktopApp.Model
             if (isConnected)
                 telnetClient.disconnect();
         }
-
         public void start()
         {
-            new Thread(delegate () {
-                var rows = System.IO.File.ReadLines(filePath);
-                foreach (string row in rows)
+            IRow = 0;
+            Speed = 1;
+            mainThread = new Thread(delegate ()
+            {
+                while (IRow < NumOfRows)
                 {
-                    telnetClient.write(row);
+                    telnetClient.write(database.getStringRow(IRow));
                     PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
-                    string[] splitted = row.Split(",");
-                    int size = splitted.Length - 1;
-                    for (int i = 0; i < size; i++)
+                    int size = database.getNumOfColumns();
+                    for (int j = 0; j < size; j++)
                     {
-                        properties[i].SetValue(this, Double.Parse(splitted[i]));
+                        properties[j].SetValue(this, database.getDataFrom(IRow, j));
                     }
-                    Thread.Sleep(100); // read the data in 10Hz - needs to be according to playback file.
+                    IRow = IRow + 1;
+                    Thread.Sleep((int)(100 * Speed)); // read the data in 10Hz - needs to be according to playback file.
+                    waitHandle.WaitOne();
                 }
                 telnetClient.disconnect();
                 return;
-            }).Start();
-
+            });
+            mainThread.Start();
         }
 
-        public void startFrom(double speed, int srcRow)
+        public void play()
         {
-            new Thread(delegate () {
-                var rows = System.IO.File.ReadLines(filePath);
-                foreach (string row in rows)
-                {
-                    telnetClient.write(row);
-                    PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
-                    string[] splitted = row.Split(",");
-                    int size = splitted.Length - 1;
-                    for (int i = srcRow; i < size; i++)
-                    {
-                        properties[i].SetValue(this, Double.Parse(splitted[i]));
-                    }
-                    Thread.Sleep((int)(100 * speed)); // read the data in 10Hz - needs to be according to playback file.
-                }
-                telnetClient.disconnect();
-                return;
-            }).Start();
+            waitHandle.Set();
         }
+
+        public void pause()
+        {
+            waitHandle.Reset();
+        }
+
+        public void stop()
+        {
+            IRow = 0;
+            waitHandle.Reset();
+        }
+        public void startFrom(double speed, int row) { }
+        //public void startFrom(double speed, int srcRow)
+        //{
+        //    mainThread.Abort();
+        //    int countRows = 0;
+        //    mainThread = new Thread(delegate () {
+        //        var rows = System.IO.File.ReadLines(filePath);
+        //        foreach (string row in rows)
+        //        {
+        //            if(countRows >= srcRow)
+        //            {
+        //                iRow++;
+        //                telnetClient.write(row);
+        //                PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
+        //                string[] splitted = row.Split(",");
+        //                int size = splitted.Length - 1;
+        //                for (int i = srcRow; i < size; i++)
+        //                {
+        //                    properties[i].SetValue(this, Double.Parse(splitted[i]));
+        //                }
+        //                Thread.Sleep((int)(100 / speed)); // read the data in 10Hz - needs to be according to playback file.
+        //            }
+        //            countRows++;
+        //        }
+        //        telnetClient.disconnect();
+        //        return;
+        //    });
+        //    mainThread.Start();
+        //}
+
+        //public int getNumOfRows()
+        //{
+        //    return database.getNumOfRows();
+        //}
 
         public void loadData(string path)
         {
             filePath = path;
             database = new DataModel(filePath);
+            NumOfRows = database.getNumOfRows();
         }
 
     }
