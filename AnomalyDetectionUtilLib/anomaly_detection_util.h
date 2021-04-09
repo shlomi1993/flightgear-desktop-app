@@ -1,15 +1,17 @@
 #pragma once
+#define DEC __declspec( dllexport )
+
 // Returns the average of the floats in array x.
-float avg(float* x, int size);
+extern "C" DEC float avg(float* x, int size);
 
 // Returns the variance of x and x.
-float var(float* x, int size);
+extern "C" DEC float var(float* x, int size);
 
 // Returns the covariance of x and y.
-float cov(float* x, float* y, int size);
+extern "C" DEC float cov(float* x, float* y, int size);
 
 // Returns the Pearson correlation coefficient of x and y.
-float pearson(float* x, float* y, int size);
+extern "C" DEC float pearson(float* x, float* y, int size);
 
 // Defines line.
 class Line {
@@ -22,6 +24,11 @@ public:
 	}
 };
 
+// Line exporter.
+extern "C" DEC void* Line_new() { return (void *) new Line(); }
+extern "C" DEC void* Line_new2(float a, float b) { return (void *) new Line(a, b); }
+extern "C" DEC float Line_f(Line *l, float x) { return l->f(x); }
+
 // Defines point.
 class Point {
 public:
@@ -30,11 +37,15 @@ public:
 	Point() :x(0), y(0) {}
 };
 
+// Point exporter.
+extern "C" DEC void* Point_new() { return (void*) new Point(); }
+extern "C" DEC void* Point_new2(float a, float b) { return (void*) new Point(a, b); }
+
 // Performs a linear regression and returns the line equation.
-Line linear_reg(Point** points, int size);
+extern "C" DEC Line linear_reg(Point** points, int size);
 
 // Returns the deviation between point p and the line equation of the points.
-float dev(Point p, Point** points, int size);
+extern "C" DEC float devp(Point p, Point** points, int size);
 
 // Returns the deviation between point p and the line.
-float dev(Point p, Line l);
+extern "C" DEC float devl(Point p, Line l);
