@@ -5,10 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace FlightSimulatorDesktopApp.ViewModel
 {
-    class PlayerViewModel : INotifyPropertyChanged
+    public partial class PlayerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
@@ -16,7 +17,8 @@ namespace FlightSimulatorDesktopApp.ViewModel
         {
             this.model = model;
             model.PropertyChanged +=
-                delegate (Object sender, PropertyChangedEventArgs e) {
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
         }
@@ -25,9 +27,37 @@ namespace FlightSimulatorDesktopApp.ViewModel
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        public void StartFrom(double speed, int row)
+        public void Play()
         {
-            model.startFrom(speed, row);
+            this.model.play();
+        }
+        
+        public void Pause()
+        {
+            this.model.pause();
+        }
+
+        public void Stop()
+        {
+            this.model.stop();
+        }
+
+        public int VM_IRow
+        {
+            get { return this.model.IRow; }
+            set { this.model.IRow = value; }
+        }
+
+        public int VM_NumOfRows
+        {
+            get { return this.model.NumOfRows; }
+            set { }
+        }
+
+        public double VM_Speed
+        {
+            get { return this.model.Speed; }
+            set { this.model.Speed = value; }
         }
     }
 }

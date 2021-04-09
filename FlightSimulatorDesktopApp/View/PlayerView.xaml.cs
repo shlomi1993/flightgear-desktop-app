@@ -1,4 +1,5 @@
-﻿using FlightSimulatorDesktopApp.View;
+﻿using FlightSimulatorDesktopApp.Model;
+using FlightSimulatorDesktopApp.View;
 using FlightSimulatorDesktopApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -20,63 +21,77 @@ namespace FlightSimulatorDesktopApp.View
     /// <summary>
     /// Interaction logic for Player.xaml
     /// </summary>
-    public partial class PlayerView : UserControl
+    public partial class PlayerView : Window
     {
         private PlayerViewModel pvm;
-        private double speed;
-        private int row;
-        public PlayerView()
+        private bool isPlayed;
+        public PlayerView(PlayerViewModel pvm)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            isPlayed = true;
+            this.pvm = pvm;
+            DataContext = this.pvm;
         }
-
-        private void b1_Click(object sender, RoutedEventArgs e)
-        {
-            player.Play();
-        }
-
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            pvm.StartFrom(speed, row);
+            if (!isPlayed)
+            {
+                isPlayed = true;
+                pvm.Play();
+            }
         }
 
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
-            pvm.StartFrom(speed, row + 10);
+
+            if ((pvm.VM_IRow + 10) < pvm.VM_NumOfRows) {
+                pvm.VM_IRow += 10;
+            }
         }
 
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
-            pvm.StartFrom(speed, row - 10);
+            if(pvm.VM_IRow - 10 < 0)
+            {
+                pvm.VM_IRow = 0;
+            } else
+            {
+                pvm.VM_IRow -= 10;
+            }
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Pause_Click(object sender, RoutedEventArgs e)
+        {
+            if(isPlayed)
+            {
+                isPlayed = false;
+                pvm.Pause();
+            }
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPlayed)
+            {
+                isPlayed = false;
+                pvm.Stop();
+            }
+        }
+
+        private void Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider slider = sender as Slider;
-            this.row = (int)slider.Value;
-            pvm.StartFrom(speed, row);
-
+            pvm.VM_Speed = slider.Value;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int input = Convert.ToInt32(speedChanged.Text);
-            if (input >= 2)
-            {
-                this.speed = 2;
-            }
-            else if (input <= 0.5)
-            {
-                this.speed = 0.5;
-            }
-            else if (input > 0.5 && input <= 1)
-            {
-                this.speed = 1;
-            }
-            else
-            {
-                this.speed = 1.5;
-            }
-        }
+
+
+        //private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        //{
+        //    Slider slider = sender as Slider;
+        //    this.row = (int)slider.Value;
+        //    pvm.StartFrom(speed, row);
+        //}
     }
 }
