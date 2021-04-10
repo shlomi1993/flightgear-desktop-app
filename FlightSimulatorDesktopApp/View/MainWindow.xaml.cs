@@ -30,6 +30,8 @@ namespace FlightSimulatorDesktopApp
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
 
+        private ControllersViewModel covm;
+
 
         public MainWindow()
         {
@@ -39,7 +41,10 @@ namespace FlightSimulatorDesktopApp
             fsvm = new FlightSimulatorViewModel(fsm);
             cvm = new ConnectionViewModel(fsm);
             dvm = new DataViewModel(fsm);
-            DataContext = fsvm;
+            
+            covm = new ControllersViewModel(fsm);
+            
+            DataContext = covm;
 
         }
         private void ClickConnect(object sender, RoutedEventArgs e)
@@ -68,6 +73,16 @@ namespace FlightSimulatorDesktopApp
         {
             cvm.disconnect();
             Application.Current.Shutdown();
+        }
+
+        private void Dashboard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
