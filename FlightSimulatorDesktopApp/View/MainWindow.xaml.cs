@@ -36,6 +36,13 @@ namespace FlightSimulatorDesktopApp
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
 
+
+<!-- merge A -->
+        private ControllersViewModel covm;
+
+
+<!-- merge B -->
+<!-- mergeEND -->
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -49,8 +56,21 @@ namespace FlightSimulatorDesktopApp
 
             fsm = new FlightSimulatorModel(cm, dm);
             fsvm = new FlightSimulatorViewModel(fsm);
+
+<!-- merge A -->
+            cvm = new ConnectionViewModel(fsm);
+            dvm = new DataViewModel(fsm);
+            
+            covm = new ControllersViewModel(fsm);
+            
+            DataContext = covm;
+
+
+<!-- merge B -->
             
             DataContext = fsvm;
+<!-- merge END -->
+
         }
 
         private void ClickConnect(object sender, RoutedEventArgs e)
@@ -76,6 +96,16 @@ namespace FlightSimulatorDesktopApp
         {
             cvm.disconnect();
             Application.Current.Shutdown();
+        }
+
+        private void Dashboard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
