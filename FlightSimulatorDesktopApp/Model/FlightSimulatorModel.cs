@@ -670,6 +670,7 @@ namespace FlightSimulatorDesktopApp.Model
                     for (int i = 0; i < size; i++)
                     {
                         properties[i].SetValue(this, Double.Parse(splitted[i]));
+
                     }
                     Thread.Sleep(100); // read the data in 10Hz - needs to be according to playback file.
                 }
