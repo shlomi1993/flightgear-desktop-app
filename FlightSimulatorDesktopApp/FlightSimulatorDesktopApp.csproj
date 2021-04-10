@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="reverse.png" />
+    <None Remove="View\forward.ico" />
+    <None Remove="View\pause.ico" />
+    <None Remove="View\play1.ico" />
+    <None Remove="View\reverse.ico" />
+    <None Remove="View\stop.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -15,6 +24,17 @@
     <PackageReference Include="Microsoft.Graph" Version="3.29.0" />
     <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="reverse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\forward.ico" />
+    <Resource Include="View\pause.ico" />
+    <Resource Include="View\play1.ico" />
+    <Resource Include="View\reverse.ico" />
+    <Resource Include="View\stop.ico" />
   </ItemGroup>
 
 </Project>

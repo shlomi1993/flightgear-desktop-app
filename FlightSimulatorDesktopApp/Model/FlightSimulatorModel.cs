@@ -616,7 +616,7 @@ namespace FlightSimulatorDesktopApp.Model
             {
                 if (speed != value)
                 {
-                    speed = 1/value;
+                    speed = value;
                     NotifyPropertyChanged("Speed");
                 }
             }
@@ -670,7 +670,7 @@ namespace FlightSimulatorDesktopApp.Model
                         properties[j].SetValue(this, database.getDataFrom(IRow, j));
                     }
                     IRow = IRow + 1;
-                    Thread.Sleep((int)(100 * Speed)); // read the data in 10Hz - needs to be according to playback file.
+                    Thread.Sleep((int)(100 * (1/Speed))); // read the data in 10Hz - needs to be according to playback file.
                     waitHandle.WaitOne();
                 }
                 telnetClient.disconnect();
@@ -694,41 +694,6 @@ namespace FlightSimulatorDesktopApp.Model
             IRow = 0;
             waitHandle.Reset();
         }
-        public void startFrom(double speed, int row) { }
-        //public void startFrom(double speed, int srcRow)
-        //{
-        //    mainThread.Abort();
-        //    int countRows = 0;
-        //    mainThread = new Thread(delegate () {
-        //        var rows = System.IO.File.ReadLines(filePath);
-        //        foreach (string row in rows)
-        //        {
-        //            if(countRows >= srcRow)
-        //            {
-        //                iRow++;
-        //                telnetClient.write(row);
-        //                PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
-        //                string[] splitted = row.Split(",");
-        //                int size = splitted.Length - 1;
-        //                for (int i = srcRow; i < size; i++)
-        //                {
-        //                    properties[i].SetValue(this, Double.Parse(splitted[i]));
-        //                }
-        //                Thread.Sleep((int)(100 / speed)); // read the data in 10Hz - needs to be according to playback file.
-        //            }
-        //            countRows++;
-        //        }
-        //        telnetClient.disconnect();
-        //        return;
-        //    });
-        //    mainThread.Start();
-        //}
-
-        //public int getNumOfRows()
-        //{
-        //    return database.getNumOfRows();
-        //}
-
         public void loadData(string path)
         {
             filePath = path;
