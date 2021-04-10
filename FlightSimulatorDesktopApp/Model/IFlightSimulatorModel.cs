@@ -13,7 +13,6 @@ namespace FlightSimulatorDesktopApp.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
-        void startFrom(double speed, int row);
         void play();
         void pause();
         void stop();
@@ -70,40 +69,6 @@ namespace FlightSimulatorDesktopApp.Model
         int NumOfRows { get; }
         double Speed { get; set; }
 
-
-        //// Flight Controls.
-        //double Aileron { get; set; }
-        //double Elevator { get; set; }
-        //double Rudder { get; set; }
-        //double Flaps { get; set; }
-        //double Slats { get; set; }
-        //double Speedbrake { get; set; }
-        //double Throttle { get; set; }
-
-        //// Gear.
-        //double EnginePump { get; set; }
-        //double ElectricPump { get; set; }
-        //double ExternalPower { get; set; }
-        //double APUGenerator { get; set; }
-
-        //// Position.
-        //double Latitude { get; set; }
-        //double Longtitude { get; set; }
-        //double Altitude { get; set; }
-
-        //// Orientation.
-        //double Roll { get; set; }
-        //double Pitch { get; set; }
-        //double Yaw { get; set; }
-        //string Heading { get; set; }
-        //double SideSlip { get; set; }
-
-        //// Velocities.
-        //double AirSpeed { get; set; }
-        //double Glideslope { get; set; }
-        //string VerticalSpeed { get; set; }
-        //string GroundSpeed { get; set; }
-        //string Altimeter { get; set; }
 
     }
 

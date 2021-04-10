@@ -17,10 +17,10 @@
         <Button x:Name ="DisconnectButton" Foreground = "Black" Click="ClickDisconnect" Height="26" Width="80" RenderTransformOrigin="0.06,0.6" Canvas.Left="1081" Canvas.Top="32">Disconnect</Button>
         <Button x:Name="BrowseButton" Foreground = "Black" Click="LoadData" Height="26" Width="80" Canvas.Left="996" Canvas.Top="32">Load Data</Button>
         <Button x:Name="ExitButton" Foreground = "Red" Click="Exit" Height="26" Width="80" Canvas.Left="1166" Canvas.Top="32" RenderTransformOrigin="0.675,3.463">Exit</Button>
-        <Button x:Name="PlayerButton" Foreground = "Blue" Click="Player" Height="50" Width="80" Canvas.Left="50" Canvas.Top="100" RenderTransformOrigin="50,50">Player</Button>
+        <Button x:Name="PlayerButton" Foreground = "Blue" Click="Player" Height="50" Width="1200" Canvas.Left="46" Canvas.Top="621" RenderTransformOrigin="50,50">Tap to show player</Button>
         <!--View:ConnectionDataView x:Name="ConnectionButtons" Canvas.Left="670" Canvas.Top="10" Height="70" Width="600"  /-->
         <Button Content="Temp Start Button" Height="54" Canvas.Left="550" Canvas.Top="13" Width="222" Click="Button_Click"/>
-        <View:ControllersView x:Name="Controllers" Canvas.Top="420" Canvas.Left="694" Height="240" Width="552"></View:ControllersView>
+        <View:ControllersView x:Name="Controllers" Canvas.Top="80" Canvas.Left="109" Height="240" Width="552"></View:ControllersView>
         <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
         <View:GraphsView x:Name="Graphs" Canvas.Top="280" Canvas.Left="694" Height="120" Width="552"></View:GraphsView>
 

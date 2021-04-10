@@ -21,35 +21,34 @@
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="37*"/>
             </Grid.RowDefinitions>
-            <Button HorizontalAlignment="Center" Height="66" VerticalAlignment="Top" Width="64" Click="Pause_Click" Foreground="Black" Margin="0,12,0,0" Grid.RowSpan="2">
+            <Button HorizontalAlignment="Center" Height="66" VerticalAlignment="Top" Width="64" Click="Pause_Click" Margin="0,12,0,0" Grid.RowSpan="2" BorderBrush="Black">
                 <Button.Background>
-                    <ImageBrush ImageSource="/View/pause.ico" Stretch="Fill"/>
+                    <ImageBrush ImageSource="/View/pause.ico" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="375,0,0,0" Click="Play_Click" Foreground="Black" Grid.RowSpan="2">
+            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="375,0,0,0" Click="Play_Click" Foreground="Black" Grid.RowSpan="2" BorderBrush="Black">
                 <Button.Background>
-                    <ImageBrush ImageSource="/View/play1.ico"/>
+                    <ImageBrush ImageSource="/View/play1.ico" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="555,0,0,0" Click="Stop_Click" Foreground="Black" Grid.RowSpan="2">
+            <Button HorizontalAlignment="Left" Height="66" VerticalAlignment="Center" Width="65" Margin="555,0,0,0" Click="Stop_Click" Foreground="Black" Grid.RowSpan="2" BorderBrush="Black">
                 <Button.Background>
                     <ImageBrush ImageSource="/View/stop.ico"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="65" Margin="645,4,0,0" Click="Forward_Click" Foreground="Black" Grid.Row="1">
+            <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="65" Margin="645,4,0,0" Click="Forward_Click" Foreground="Black" Grid.Row="1" BorderBrush="Black">
                 <Button.Background>
                     <ImageBrush ImageSource="/View/forward.ico"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="65" Margin="285,4,0,0" Click="Reverse_Click" Foreground="Black" Grid.Row="1">
+            <Button Height="50" VerticalAlignment="Top" Margin="285,4,650,0" Click="Reverse_Click" Grid.Row="1" BorderBrush="Black">
                 <Button.Background>
                     <ImageBrush ImageSource="/View/reverse.ico"/>
                 </Button.Background>
             </Button>
-            <Label Content="Speed" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="800,7,0,0" VerticalAlignment="Top" Width="77" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.499,0.064" Grid.Row="1"/>
-            <Slider HorizontalAlignment="Left" Height="40" Margin="880,19,0,0" VerticalAlignment="Top" Width="120" TickPlacement="BottomRight" Minimum="0.5" Maximum="2" Value="{Binding VM_Speed, Mode=TwoWay}" TickFrequency="0.5" Grid.Row="1"/>
-
+            <Label Content="Speed" HorizontalContentAlignment="Center" Height="32" Margin="800,10,120,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.499,0.064" Grid.Row="1"/>
+            <Slider Minimum="0.5" Maximum="2" TickPlacement="BottomRight" TickFrequency="0.5" Value="{Binding VM_Speed, Mode=TwoWay}" Height="14" Margin="880,-20,-20,0" Grid.Row="1">
+            </Slider>
         </Grid>
-
     </StackPanel>
 </Window>

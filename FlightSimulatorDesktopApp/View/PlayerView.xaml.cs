@@ -78,20 +78,5 @@ namespace FlightSimulatorDesktopApp.View
                 pvm.Stop();
             }
         }
-
-        private void Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Slider slider = sender as Slider;
-            pvm.VM_Speed = slider.Value;
-        }
-
-
-
-        //private void Slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
-        //{
-        //    Slider slider = sender as Slider;
-        //    this.row = (int)slider.Value;
-        //    pvm.StartFrom(speed, row);
-        //}
     }
 }
