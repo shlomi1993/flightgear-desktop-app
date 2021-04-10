@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FlightSimulatorDesktopApp"
         xmlns:View="clr-namespace:FlightSimulatorDesktopApp.View"
         mc:Ignorable="d"
+        Closing="WindowClosing"
         Title="Flight Simulator Desktop Application" Height="720" Width="1280" MinHeight="720" MaxHeight="720" MinWidth="1280" MaxWidth="1280">
     <Canvas Background="AliceBlue">
         <Grid Height="720" Width="1280" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.357,0.436">
@@ -38,6 +39,8 @@
             <TextBlock Text="{Binding VM_SideSlip}" TextWrapping="Wrap" Margin="1033,253,198,451"/>
 
         </Grid>
+
+       <!-- merge A -->
         <Label Content="Flight Simulator Manager" FontSize="32" FontWeight="Bold" FontStyle="Italic" Height="70" Canvas.Left="22" Canvas.Top="10" Width="402"/>
 
         <Button x:Name ="ConnectButton" Foreground = "Black" Click="ClickConnect" Height="26" Width="80" Canvas.Left="911" Canvas.Top="32" >Connect</Button>
@@ -206,6 +209,20 @@
         <TextBlock Text="{Binding VM_Throttle2}" TextWrapping="Wrap" Canvas.Left="718" Canvas.Top="314" Height="38" Width="90"/>
         <TextBlock Text="{Binding VM_Throttle1}" TextWrapping="Wrap" Canvas.Left="641" Canvas.Top="314" Height="38" Width="90"/>
         <TextBlock Text="{Binding VM_Rudder}" TextWrapping="Wrap" Canvas.Left="805" Canvas.Top="42" Height="38" Width="90"/>
+
+       <!-- merge B -->
+
+        <Label Content="Flight Simulator Manager" FontSize="32" FontWeight="Bold" FontStyle="Italic" Height="70" Canvas.Left="22" Canvas.Top="10" Width="630"/>
+        <TextBlock FontSize="14" Height="18" Margin="13,15,13,15" Text="{Binding Path=VM_ConnectionStatus, Mode=OneWay, StringFormat=Connection: {0}, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="893" Width="339"/>
+        <Button x:Name ="ConnectButton" Foreground = "Black" Click="ClickConnect" Height="26" Width="120" Canvas.Left="1126" Canvas.Top="22" Content="Connection Settings" />
+        <Button x:Name="BrowseButton" Foreground = "Black" Click="LoadData" Height="26" Width="119" Canvas.Left="996" Canvas.Top="22">Load Data</Button>
+        <Button Content="Temp Start Button" Height="54" Canvas.Left="550" Canvas.Top="13" Width="222" Click="Button_Click"/>
+        <View:PlayerView x:Name="Player" Canvas.Top="80" Canvas.Left="22" Height="500" Width="454"></View:PlayerView>
+        <View:ControllersView x:Name="Controllers" Canvas.Top="420" Canvas.Left="694" Height="240" Width="552"></View:ControllersView>
+        <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
+        <View:GraphsView x:Name="Graphs" Canvas.Top="280" Canvas.Left="694" Height="120" Width="552"></View:GraphsView>
+      <!-- merge END -->
+
 
 
 

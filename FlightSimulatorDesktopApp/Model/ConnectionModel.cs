@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -9,49 +10,57 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorDesktopApp.Model
 {
-    public interface ITelnetClient
+    public interface IConnectionModel : INotifyPropertyChanged
     {
-        //public string IPAddr { get; set; }
-        //public int Port { get; set; }
-        void connect(string ip, int port);
-        void write(string command);
-        string read(); // blocking call
-        void disconnect();
+        // Properties.
+        public string IPAddr { get; }
+        public int Port { get; }
+        public string ConnectionStatus { get; }
+
+        // Connection methods.
+        public void connect(string ip, int port);
+        public void disconnect();
+        public void write(string command);
+        public string read(); // blocking call
+                
     }
-    public class TelnetClient : ITelnetClient
+
+    public class ConnectionModel : IConnectionModel
     {
+        // Privates.
         private Socket sender;
         private readonly Mutex mutex = new Mutex();
+        private string m_ip;
+        private int m_port;
+        private string status;
 
-        //private string ipAddress;
-        //private int port;
+        // Norifier.
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //public string IPAddr
-        //{
-        //    get => ipAddress;
-        //    set
-        //    {
-        //        if (ipAddress != value)
-        //        {
-        //            ipAddress = value;
-        //        }
-        //    }
-        //}
+        public ConnectionModel()
+        {
+            status = "Disconnected";
+        }
 
-        //public int Port
-        //{
-        //    get => port;
-        //    set
-        //    {
-        //        if (port != value)
-        //        {
-        //            port = value;
-        //        }
-        //    }
-        //}
+        // IP, Port and status properties.
+        public string IPAddr { get => m_ip; }
+        public int Port { get => m_port; }
+        public string ConnectionStatus { get => status; }
 
+        // Notification method.
+        public void NotifyPropertyChanged(string propName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+        // Connection method.
         public void connect(string ip, int port)
         {
+            if (!status.Equals("Disconnected"))
+            {
+                disconnect();
+            }
+
             try
             {
                 // Parse the given IP.
@@ -66,23 +75,44 @@ namespace FlightSimulatorDesktopApp.Model
 
                 // Connect the socket to the remote endpoint.
                 sender.Connect(enpoint);
+
+                // Update IP and Port privates and connection status (isConnected).
+                m_ip = ip;
+                m_port = port;
+                status = "Connected to IP " + ip + " in port " + port + "."; 
+
+                // Notify change.
+                NotifyPropertyChanged("ConnectionStatus");
+
             }
             catch (Exception)
             {
-                throw;
+                disconnect();
             }
         }
 
+        // Disconnection method.
         public void disconnect()
         {
-            try { sender.Shutdown(SocketShutdown.Both); }
+            if (status.Equals("Disconnected"))
+                return;
+
+            try
+            {
+                sender.Shutdown(SocketShutdown.Both);
+            }
             catch (ArgumentNullException) { }
             catch (SocketException) { }
             catch (ObjectDisposedException) { }
             catch (Exception) { }
-            finally { sender.Close(); }
+            finally
+            {
+                sender.Close();
+                status = "Disconnected";
+            }
         }
 
+        // Read (recieve) method. Blocking call feature implemented by mutex.
         public string read()
         {
             try
@@ -116,6 +146,7 @@ namespace FlightSimulatorDesktopApp.Model
             }
         }
 
+        // Write (send) method.
         public void write(string command)
         {
             try
