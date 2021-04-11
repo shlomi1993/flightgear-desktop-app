@@ -15,7 +15,7 @@
         </Grid>
 
         <Label Content="Flight Simulator Manager" FontSize="32" FontWeight="Bold" FontStyle="Italic" Height="70" Canvas.Left="22" Canvas.Top="10" Width="630"/>
-        
+
         <Button x:Name ="ConnectButton" Foreground = "Black" Click="ClickConnect" Height="26" Width="120" Canvas.Left="1126" Canvas.Top="22" Content="Connection Settings" />
         <Button x:Name="BrowseButton" Foreground = "Black" Click="LoadData" Height="26" Width="119" Canvas.Left="996" Canvas.Top="22">Load Data</Button>
 
@@ -24,6 +24,7 @@
         <View:ControllersView x:Name="Controllers" Canvas.Top="420" Canvas.Left="694" Height="240" Width="552"></View:ControllersView>
         <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
 
+        <Button x:Name="GraphsButton" Content="Analayze" Margin="601,217,0,0" Height="84" Width="102" Click="GraphsButton_Click" Canvas.Left="457" Canvas.Top="86"/>
 
         <Button Content="Temp Start Button" Height="54" Canvas.Left="550" Canvas.Top="13" Width="222" Click="Button_Click"/>
 

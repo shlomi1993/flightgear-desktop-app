@@ -78,6 +78,13 @@ namespace FlightSimulatorDesktopApp
             Application.Current.Shutdown();
         }
 
+        private void GraphsButton_Click(object sender, RoutedEventArgs e)
+        {
+            GraphsButton.Foreground = new SolidColorBrush(Colors.Blue);
+            GraphsWindow ws = new GraphsWindow();
+            ws.Show();
+        }
+
 
     }
 }
