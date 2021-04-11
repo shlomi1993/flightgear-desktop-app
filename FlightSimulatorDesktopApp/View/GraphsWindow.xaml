@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FlightSimulatorDesktopApp.ViewModel" xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:local="clr-namespace:FlightSimulatorDesktopApp.Model" xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="GraphsWindow" Height="600" Width="1200">
     <Window.DataContext>
-        <local:GraphsViewModel/>
+        <local:GraphsModel/>
     </Window.DataContext>
     <Grid>
-        <oxy:PlotView Model="{Binding timeModel}" Margin="10,10,674,292"/>
-        <oxy:PlotView Model="{Binding correlativeModel}" Margin="698,10,10,292"/>
-        <oxy:PlotView Model="{Binding lineRegModel}" Margin="354,292,354,10"/>
+        <oxy:PlotView Model="{Binding TimeModel}" Margin="10,10,674,292"/>
+        <oxy:PlotView Model="{Binding CorrelativeModel}" Margin="698,10,10,292"/>
+        <oxy:PlotView Model="{Binding LineRegModel}" Margin="354,292,354,10"/>
     </Grid>
 </Window>

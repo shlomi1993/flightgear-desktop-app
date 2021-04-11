@@ -11,6 +11,7 @@
     <Canvas Background="AliceBlue">
         <Grid Height="720" Width="1280" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal">
+               
             </StackPanel>
         </Grid>
 
@@ -25,6 +26,7 @@
         <View:DashboardView x:Name="Dashboard" Canvas.Top="80" Canvas.Left="694" Height="180" Width="552"></View:DashboardView>
 
         <Button x:Name="GraphsButton" Content="Analayze" Margin="601,217,0,0" Height="84" Width="102" Click="GraphsButton_Click" Canvas.Left="457" Canvas.Top="86"/>
+            
 
         <Button Content="Temp Start Button" Height="54" Canvas.Left="550" Canvas.Top="13" Width="222" Click="Button_Click"/>
 

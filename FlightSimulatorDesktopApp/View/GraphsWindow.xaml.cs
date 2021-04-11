@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulatorDesktopApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace FlightSimulatorDesktopApp.View
     /// </summary>
     public partial class GraphsWindow : Window
     {
-        public GraphsWindow()
+        private GraphsViewModel gvm;
+        public GraphsWindow(GraphsViewModel gvm)
         {
             InitializeComponent();
+            this.gvm = gvm;
+            DataContext = this.gvm.gm;
         }
     }
 }
