@@ -10,28 +10,22 @@ namespace FlightSimulatorDesktopApp.ViewModel
 {
     public partial class DataViewModel : INotifyPropertyChanged
     {
-        public IDataModel model;
+        public IFlightSimulatorModel model;
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public DataViewModel(IDataModel dm)
+        public DataViewModel(IFlightSimulatorModel m)
         {
-            model = dm;
+            model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
         public void NotifyPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public void LoadData(string filePath)
         {
             model.loadData(filePath);
-        }
-        public string VM_FilePath
-        {
-            get => model.FilePath;
         }
     }
 }

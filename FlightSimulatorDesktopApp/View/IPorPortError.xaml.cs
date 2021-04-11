@@ -21,7 +21,6 @@ namespace FlightSimulatorDesktopApp.View
     {
         public IPorPortError()
         {
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 

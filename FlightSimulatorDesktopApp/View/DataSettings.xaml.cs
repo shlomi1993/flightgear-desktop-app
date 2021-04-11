@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,8 +29,6 @@ namespace FlightSimulatorDesktopApp.View
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.dvm = dvm;
-            DataContext = this.dvm;
-            fileStatus.IsReadOnly = true;
         }
         private void openFileClick(object sender, RoutedEventArgs e)
         {

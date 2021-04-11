@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +10,11 @@ namespace FlightSimulatorDesktopApp.ViewModel
 {
     public partial class ConnectionViewModel : INotifyPropertyChanged
     {
-        public IConnectionModel model;
+        public IFlightSimulatorModel model;
         public event PropertyChangedEventHandler PropertyChanged;
-        public ConnectionViewModel(IConnectionModel cm)
+        public ConnectionViewModel(IFlightSimulatorModel m)
         {
-            model = cm;
+            model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
@@ -26,15 +25,18 @@ namespace FlightSimulatorDesktopApp.ViewModel
         }
         public void connect(string ip, int port)
         {
-            model.connect(ip, port);            
+            try
+            {
+                model.connect(ip, port);
+            } catch (Exception)
+            {
+                // need to notify the view.
+            }
+            
         }
         public void disconnect()
         {
             model.disconnect();
-        }
-        public string VM_ConnectionStatus
-        {
-            get => model.ConnectionStatus;
         }
 
     }
