@@ -30,11 +30,6 @@ namespace FlightSimulatorDesktopApp.View
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             this.cvm = cvm;
-            DataContext = this.cvm;
-            if (cvm.VM_ConnectionStatus.Equals("Disconnected"))
-            {
-                Disconnect.IsEnabled = false;
-            }
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
@@ -67,11 +62,6 @@ namespace FlightSimulatorDesktopApp.View
                 port = default(int);
             }
             
-        }
-
-        private void ClickDisconnect(object sender, RoutedEventArgs e)
-        {
-            cvm.disconnect();
         }
     }
 }

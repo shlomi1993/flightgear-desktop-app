@@ -18,8 +18,10 @@ namespace FlightSimulatorDesktopApp.Model
         public event PropertyChangedEventHandler PropertyChanged;
 
         // Connection and Data privates.
-        private IConnectionModel telnetClient;
-        private IDataModel database;
+        private ITelnetClient telnetClient;
+        private string ip;
+        private int port;
+        private string filePath;
         private bool isConnected;
 
         // Simulator's data privates.
@@ -67,12 +69,54 @@ namespace FlightSimulatorDesktopApp.Model
         private double engineRPM;
 
         // Constructor.
-        public FlightSimulatorModel(ConnectionModel cm, DataModel dm)
+        public FlightSimulatorModel(ITelnetClient tc)
         {
-            telnetClient = cm;
-            database = dm;
+            telnetClient = tc;
             isConnected = false;
         }
+
+        // Connection and Data properties.
+        //public string IPAdderss
+        //{
+        //    get => ip;
+        //    set
+        //    {
+        //        if (ip != value)
+        //        {
+        //            ip = value;
+        //            NotifyPropertyChanged("IPAdderss");
+        //        }
+        //    }
+        //}
+
+        //public int Port
+        //{
+        //    get => port;
+        //    set
+        //    {
+        //        if (port != value)
+        //        {
+        //            port = value;
+        //            NotifyPropertyChanged("Port");
+        //        }
+        //    }
+        //}
+        //public string FilePath
+        //{
+        //    get => filePath;
+        //    set
+        //    {
+        //        if (filePath != value)
+        //        {
+        //            filePath = value;
+        //            NotifyPropertyChanged("FilePath");
+        //        }
+        //    }
+        //}
+
+        // Note that if remove comments, update loop will be broken!
+
+
 
         // Simulator Properties.
         public double Aileron
@@ -578,8 +622,11 @@ namespace FlightSimulatorDesktopApp.Model
             }
         }
 
-        // Connection checker.
-        public bool IsConnected { get => isConnected; }
+        //
+        public bool IsConnected
+        {
+            get => isConnected;
+        }
 
         // Notification method.
         public void NotifyPropertyChanged(string propName)
@@ -587,21 +634,42 @@ namespace FlightSimulatorDesktopApp.Model
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        // Starter method.
+        // Connection methods.
+        public void connect(string ip, int port)
+        {
+            try
+            {
+                telnetClient.connect(ip, port);
+                isConnected = true;
+            } catch (Exception)
+            {
+                isConnected = false;
+                throw;
+            }
+
+        }
+
+        public void disconnect()
+        {
+            if (isConnected)
+                telnetClient.disconnect();
+        }
+
         public void start()
         {
             new Thread(delegate () {
-                var rows = System.IO.File.ReadLines(database.FilePath);
+                var rows = System.IO.File.ReadLines(filePath);
+                int k = 0;
                 foreach (string row in rows)
                 {
                     telnetClient.write(row);
                     PropertyInfo[] properties = typeof(FlightSimulatorModel).GetProperties();
                     string[] splitted = row.Split(",");
-                    int size = splitted.Length;
+                    int size = splitted.Length - 1;
+                    k++;
                     for (int i = 0; i < size; i++)
                     {
                         properties[i].SetValue(this, Double.Parse(splitted[i]));
-
                     }
                     Thread.Sleep(100); // read the data in 10Hz - needs to be according to playback file.
                 }
@@ -609,6 +677,11 @@ namespace FlightSimulatorDesktopApp.Model
                 return;
             }).Start();
 
+        }
+
+        public void loadData(string path)
+        {
+            filePath = path;
         }
 
     }

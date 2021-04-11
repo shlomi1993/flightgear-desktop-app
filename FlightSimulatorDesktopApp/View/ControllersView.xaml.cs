@@ -22,11 +22,9 @@ namespace FlightSimulatorDesktopApp.View
     /// </summary>
     public partial class ControllersView : UserControl
     {
-        private ControllersViewModel covm;
-        public ControllersView(ControllersViewModel covm)
+        public ControllersView()
         {
             InitializeComponent();
-            this.covm = covm;
         }
     }
 }

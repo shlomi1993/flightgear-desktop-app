@@ -1,5 +1,6 @@
 ﻿using FlightSimulatorDesktopApp.ViewModel;
 using FlightSimulatorDesktopApp.Model;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulatorDesktopApp.View;
 using System.Diagnostics;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace FlightSimulatorDesktopApp
 {
@@ -26,65 +25,38 @@ namespace FlightSimulatorDesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Models privates.
         private FlightSimulatorModel fsm;
-        private DataModel dm;
-        private ConnectionModel cm;
-
-        // ViewModels privates.
         private FlightSimulatorViewModel fsvm;
         private ConnectionViewModel cvm;
         private DataViewModel dvm;
 
 
-<!-- merge A -->
-        private ControllersViewModel covm;
-
-
-<!-- merge B -->
-<!-- mergeEND -->
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
-            dm = new DataModel();
-            dvm = new DataViewModel(dm);
-
-            cm = new ConnectionModel();
-            cvm = new ConnectionViewModel(cm);
-
-            fsm = new FlightSimulatorModel(cm, dm);
+            fsm = new FlightSimulatorModel(new TelnetClient());
             fsvm = new FlightSimulatorViewModel(fsm);
-
-<!-- merge A -->
             cvm = new ConnectionViewModel(fsm);
             dvm = new DataViewModel(fsm);
-            
-            covm = new ControllersViewModel(fsm);
-            
-            DataContext = covm;
-
-
-<!-- merge B -->
-            
             DataContext = fsvm;
-<!-- merge END -->
 
         }
-
         private void ClickConnect(object sender, RoutedEventArgs e)
         {
             ConnectButton.Foreground = new SolidColorBrush(Colors.Blue);
             ConnectionSettings cs = new ConnectionSettings(cvm);
             cs.Show();
         }
-
         private void LoadData(object sender, RoutedEventArgs e)
         {
             BrowseButton.Foreground = new SolidColorBrush(Colors.Blue);
             DataSettings ds = new DataSettings(dvm);
             ds.Show();
+        }
+        private void ClickDisconnect(object sender, RoutedEventArgs e)
+        {
+            cvm.disconnect(); // need to check if disconnected already.           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -92,20 +64,10 @@ namespace FlightSimulatorDesktopApp
             fsvm.start();
         }
 
-        private void WindowClosing(object sender, CancelEventArgs e)
+        private void Exit(object sender, RoutedEventArgs e)
         {
             cvm.disconnect();
             Application.Current.Shutdown();
-        }
-
-        private void Dashboard_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
