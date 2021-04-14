@@ -13,7 +13,6 @@
             </StackPanel>
         </Grid>
         <Label Content="Flight Simulator Manager" FontSize="32" FontWeight="Bold" FontStyle="Italic" Height="70" Canvas.Left="24" Canvas.Top="10" Width="630" Foreground="white" FontFamily="Castellar"/>
-        <TextBlock FontSize="14" Height="18" Margin="13,15,13,15" Text="{Binding Path=VM_ConnectionStatus, Mode=OneWay, StringFormat=Connection: {0}, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="893" Width="339"/>
         <View:SetUpView x:Name="SetUp" Canvas.Left="960" Canvas.Top="20" Width="280" Height="40"/>
         <View:ControllersView x:Name="Controllers" Canvas.Left="584" Canvas.Top="265" Height="368" Width="656" />
         <View:PlayerView x:Name="Playback" Canvas.Left="40" Canvas.Top="575" Width="1200" Height="100" />
