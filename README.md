@@ -49,3 +49,6 @@ Instructions:
 --fdm=null
 3. Download "FlightGearDesktopApp" project to Visual Studio
 4. Press Play and enjoy :)
+
+Also we would like to share with you our trial video,
+https://youtu.be/kW73YUJgMZo
