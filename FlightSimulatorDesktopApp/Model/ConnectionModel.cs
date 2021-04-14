@@ -22,7 +22,7 @@ namespace FlightSimulatorDesktopApp.Model
         public void disconnect();
         public void write(string command);
         public string read(); // blocking call
-                
+
     }
 
     public class ConnectionModel : IConnectionModel
@@ -79,7 +79,9 @@ namespace FlightSimulatorDesktopApp.Model
                 // Update IP and Port privates and connection status (isConnected).
                 m_ip = ip;
                 m_port = port;
-                status = "Connected to IP " + ip + " in port " + port + "."; 
+
+                status = "Connected to IP " + ip + " in port " + port + ".";
+
 
                 // Notify change.
                 NotifyPropertyChanged("ConnectionStatus");

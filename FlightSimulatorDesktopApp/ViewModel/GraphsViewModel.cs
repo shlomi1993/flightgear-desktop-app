@@ -1,21 +1,52 @@
-﻿using OxyPlot;
+
+﻿using FlightSimulatorDesktopApp.Model;
+using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightSimulatorDesktopApp.ViewModel
 {
-    class GraphsViewModel
+
+
+    public class GraphsViewModel : INotifyPropertyChanged
     {
-        public GraphsViewModel()
+        public GraphsModel gm;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public GraphsViewModel(GraphsModel gm)
         {
-            this.MyModel = new PlotModel { Title = "Example 1" };
-            this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
+            this.gm = gm;
+            gm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged("VM_" + e.PropertyName);
+            };
+
         }
 
-        public PlotModel MyModel { get; private set; }
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void setUpModel(PlotModel pm, string anotherProp, string chosenProp)
+        {
+            gm.setUpModel(pm, anotherProp, chosenProp);
+        }
+
+        public void LoadGraphData(PlotModel pm, string anotherProp, string chosenProp, bool time)
+        {
+            gm.LoadGraphData(pm, anotherProp, chosenProp, time);
+        }
     }
+
+
 }

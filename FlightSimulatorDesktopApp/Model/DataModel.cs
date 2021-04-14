@@ -16,6 +16,10 @@ namespace FlightSimulatorDesktopApp.Model
         public double[] getRow(int i);
         public string FilePath { get; }
 
+        public int Rows { get; }
+        public int Columns { get; }
+
+
     }
     public class DataModel : IDataModel
     {
@@ -25,7 +29,7 @@ namespace FlightSimulatorDesktopApp.Model
         private double[,] database;
         private int numOfRows;
         private int numOfColumns;
-        
+
         // Notifer.
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -40,6 +44,12 @@ namespace FlightSimulatorDesktopApp.Model
 
         // filePath property getter.
         public string FilePath { get => filePath; }
+
+
+        public int Rows => numOfRows;
+
+        public int Columns => numOfColumns;
+
 
         // Notification method.
         public void NotifyPropertyChanged(string propName)
@@ -85,7 +95,7 @@ namespace FlightSimulatorDesktopApp.Model
                 numOfRows = oldNumOfRows;
                 numOfColumns = oldNumOfCols;
             }
-            
+
         }
 
         // This method allows to get a specific data from the database.
