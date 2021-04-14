@@ -57,11 +57,12 @@ namespace FlightSimulatorDesktopApp.View
             try
             {
                 port = Int32.Parse(txtPort.Text);
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 port = default(int);
             }
-            
+
         }
     }
 }
