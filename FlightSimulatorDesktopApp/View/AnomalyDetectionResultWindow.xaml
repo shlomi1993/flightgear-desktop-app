@@ -1,0 +1,17 @@
+﻿<Window x:Class="FlightSimulatorDesktopApp.View.AnomalyDetectionResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
+        mc:Ignorable="d"
+        Title="Anomaly Detection Result" Height="500" Width="350" MaxHeight="500" MinHeight="500" MaxWidth="350" MinWidth="350">
+    <Canvas>
+        <Label Content="Output:" FontSize="14" FontWeight="Bold"  Canvas.Left="10" Canvas.Top="18"></Label>
+        <TextBox x:Name="txtOutput" FontSize="12" Canvas.Left="20" Canvas.Top="75" Height="320" Width="300" BorderBrush="Black" BorderThickness="1" Text="{Binding Path=VM_Output, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="You can copy the output as a text :)" FontSize="14" Canvas.Left="19" Canvas.Top="403" Width="301"/>
+        <Button Content="Close" Height="29" Canvas.Left="269" Canvas.Top="437" Width="68" Click="Close_Click"/>
+        <Label Content="TimeStep" FontSize="14" Canvas.Left="20" Canvas.Top="44"/>
+        <Label Content="Correlated properties" FontSize="14" Canvas.Left="180" Canvas.Top="44"/>
+    </Canvas>
+</Window>
