@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="FlightSimulatorDesktopApp.View.PlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1200">
+    <Border BorderThickness="3" BorderBrush="White" CornerRadius="40">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="Blue" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <StackPanel HorizontalAlignment="Center" Height="180" VerticalAlignment="Center" Width="1180" >
+            <Slider HorizontalAlignment="Center" Height="25" Margin="0,50,0,0" VerticalAlignment="Top" Width="1150" TickFrequency="1" IsSnapToTickEnabled="True"
+            TickPlacement="BottomRight" Minimum="0" Maximum="{Binding VM_NumOfRows, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                Value="{Binding VM_IRow, Mode=TwoWay}">
+            </Slider>
+            <Grid Height="90" Width="1000" Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button HorizontalAlignment="Center" Height="50" VerticalAlignment="Top" Width="50" Click="Pause_Click" Margin="0,8,0,0" Grid.RowSpan="2" BorderBrush="Black">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/pause.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Margin="420,8,0,0" Click="Play_Click" Foreground="Black" Grid.RowSpan="2" BorderBrush="Black">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/play1.png"/>
+                    </Button.Background>
+                </Button>
+                <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Margin="530,8,0,0" Click="Stop_Click" Foreground="Black" Grid.RowSpan="2" BorderBrush="Black">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/stop.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Button HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Margin="585,8,0,0" Click="Forward_Click" Foreground="Black" BorderBrush="Black" Grid.RowSpan="2">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/forward.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Button Height="50" Width="50" VerticalAlignment="Top" Margin="365,8,585,0" Click="Reverse_Click" BorderBrush="Black" Grid.RowSpan="2">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/View/reverse.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Label Content="Speed" HorizontalContentAlignment="Center" Height="38" Margin="800,-8,120,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.500,0.065" Grid.Row="1" Foreground="White"/>
+                <Slider Minimum="0.2" Maximum="2" TickPlacement="BottomRight" TickFrequency="0.5" Value="{Binding VM_Speed, Mode=TwoWay}" Margin="880,2,-20,35" Grid.Row="1"/>
+            </Grid>
+            <TextBlock Text="{Binding VM_Time, Mode=OneWay, StringFormat={}{00:00:00}}" Width="70" RenderTransformOrigin="0.5,0.5" Height="30" Margin="-1100,-150,0,0" Foreground="White" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.127"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </StackPanel>
+    </Border>
+</UserControl>

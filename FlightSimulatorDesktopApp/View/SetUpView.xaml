@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="FlightSimulatorDesktopApp.View.SetUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
+             mc:Ignorable="d" Height="40" Width="280">
+    <Canvas Background="Transparent">
+        <!--TextBlock FontSize="14" Height="18" Margin="13,15,13,15" Text="{Binding Path=VM_ConnectionStatus, Mode=OneWay, StringFormat=Connection: {0}, UpdateSourceTrigger=PropertyChanged}" Width="339" Canvas.Top="19"/-->
+        <Button x:Name ="ConnectButton" BorderThickness="2" BorderBrush="White" Background="Transparent" Foreground = "White" Click="ClickConnect" Height="24" Width="120" Content="Connection Settings" Canvas.Top="8" Canvas.Left="150" />
+        <Button x:Name="BrowseButton" BorderThickness="2" BorderBrush="White" Background="Transparent" Foreground = "White" Click="LoadData" Height="24" Width="120" Canvas.Top="8" Canvas.Left="10">Load Data</Button>
+    </Canvas>
+</UserControl>

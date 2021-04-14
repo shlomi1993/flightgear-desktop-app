@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>PlaneIcon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\forward.png" />
+    <None Remove="View\pause.jpg" />
+    <None Remove="View\pause.png" />
+    <None Remove="View\play1.png" />
+    <None Remove="View\reverse.png" />
+    <None Remove="View\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Graph" Version="3.29.0" />
+    <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AnomalyDetectionUtilLib">
+      <HintPath>Utilities\AnomalyDetectionUtilLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\forward.png" />
+    <Resource Include="View\pause.jpg" />
+    <Resource Include="View\pause.png" />
+    <Resource Include="View\play1.png" />
+    <Resource Include="View\reverse.png" />
+    <Resource Include="View\stop.png" />
+  </ItemGroup>
+
+</Project>

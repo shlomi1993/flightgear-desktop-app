@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AnomalyDetectionResultWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AnomalyDetectionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ControllersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\GraphsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PlayerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\SetUpView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AnomalyDetectionResultWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AnomalyDetectionView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ControllersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GraphsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PlayerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SetUpView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

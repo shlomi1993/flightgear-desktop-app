@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="FlightSimulatorDesktopApp.View.AnomalyDetectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorDesktopApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="170" d:DesignWidth="550">
+    <Border>
+        <Canvas>
+            <TextBlock FontSize="14" Foreground = "White" TextWrapping="WrapWithOverflow" Height="34" Width="519" Canvas.Left="17" Text="Select an anomaly detection algorithm DLL file and another CSV flight file." Canvas.Top="34"/>
+            <TextBox x:Name="txtCorr" BorderThickness="2" BorderBrush="White" FontSize="14" TextChanged="threshold_changed" Canvas.Left="143" Canvas.Top="132" Width="116"/>
+            <Button x:Name="Run_Button" Background="Transparent" Foreground = "White" BorderThickness="2" BorderBrush="White"  Content="Run Anomaly Detection" Click="Run_Click" Canvas.Left="384" Canvas.Top="131" Width="152" Height="28"/>
+            <Button x:Name="openFile" Background="Transparent" FontSize="14" BorderThickness="2" BorderBrush="White" Foreground = "White" Click="CSV_Click" VerticalContentAlignment="Center" Width="110" Canvas.Top="62" Canvas.Left="16">Select CSV file</Button>
+            <TextBox x:Name="txtPath_CSV" BorderThickness="2" BorderBrush="White" FontSize="14" Canvas.Left="143" Canvas.Top="62" TextWrapping="NoWrap" Grid.Column="1" Grid.Row="1" Width="393" Height="25" TextChanged="txtPath_TextChanged"/>
+            <Label FontSize="16" FontWeight="Bold" Foreground = "White" Content="Anomaly Detection" Canvas.Left="17"/>
+            <Button x:Name="ChooseAlgo" Background="Transparent" Foreground="White" BorderThickness="2" BorderBrush="White"  FontSize="14" Click="DLL_Click" VerticalContentAlignment="Center" Width="110" Canvas.Top="97" Canvas.Left="16" RenderTransformOrigin="0.501,1.098">Select DLL file</Button>
+            <TextBox x:Name="txtPath_DLL" BorderThickness="2" BorderBrush="White" FontSize="14" Canvas.Left="143" Canvas.Top="97" TextWrapping="NoWrap" Width="393" Height="25" TextChanged="txtPath_Copy_TextChanged"/>
+            <TextBlock FontSize="14" Foreground = "White" TextWrapping="WrapWithOverflow" Height="34" Width="99" Canvas.Left="27" Text="Set threshold:" Canvas.Top="132"/>
+
+        </Canvas>
+    </Border>
+</UserControl>
