@@ -137,7 +137,7 @@ namespace FlightSimulatorDesktopApp.Model
             {
                 Debug.WriteLine("Error in AnomalyDetectionModel.visualize().");
             }
-
+            PlotModel pm;
             return null;
             
             
