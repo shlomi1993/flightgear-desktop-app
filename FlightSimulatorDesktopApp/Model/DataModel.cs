@@ -15,8 +15,10 @@ namespace FlightSimulatorDesktopApp.Model
         public double[] getColumn(int j);
         public double[] getRow(int i);
         public string FilePath { get; }
+
         public int Rows { get; }
         public int Columns { get; }
+
 
     }
     public class DataModel : IDataModel
@@ -43,9 +45,11 @@ namespace FlightSimulatorDesktopApp.Model
         // filePath property getter.
         public string FilePath { get => filePath; }
 
+
         public int Rows => numOfRows;
 
         public int Columns => numOfColumns;
+
 
         // Notification method.
         public void NotifyPropertyChanged(string propName)

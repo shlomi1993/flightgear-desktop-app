@@ -1,3 +1,4 @@
+
 ﻿using FlightSimulatorDesktopApp.Model;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -7,11 +8,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightSimulatorDesktopApp.ViewModel
 {
+
 
     public class GraphsViewModel : INotifyPropertyChanged
     {
@@ -44,5 +47,6 @@ namespace FlightSimulatorDesktopApp.ViewModel
             gm.LoadGraphData(pm, anotherProp, chosenProp, time);
         }
     }
+
 
 }
