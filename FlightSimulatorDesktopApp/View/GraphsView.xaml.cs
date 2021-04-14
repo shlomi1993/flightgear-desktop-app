@@ -38,6 +38,7 @@ namespace FlightSimulatorDesktopApp.View
                 ListBoxItem newItem = new ListBoxItem();
                 newItem.Content = pi.Name;
                 featureListBox.Items.Add(newItem);
+                if (pi.Name.Equals("EngineRPM")) { break; }
             }
 
             if (Application.Current is App)
