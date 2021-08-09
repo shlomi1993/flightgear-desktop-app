@@ -52,3 +52,9 @@ Instructions:
 
 Also we would like to share with you our trial video,
 https://youtu.be/kW73YUJgMZo
+
+![alt text](Extra/Capture.JPG)
+
+![alt text](Extra/Capture1.JPG)
+
+![alt text](Extra/Capture2.JPG)
