@@ -1,4 +1,4 @@
-# FlightSimulatorDesktopApp
+# Flight Simulator Desktop App
 
 About
 
